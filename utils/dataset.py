@@ -27,11 +27,13 @@ def getDataset(dataset):
   classes.remove('.ipynb_checkpoints')
   for imgClass in classes:
     for file in os.listdir(directory + imgClass):
-      y.append(imgClass)
-      if re.search("\.pgm$", file) and not re.search(".*Ambient[.]pgm$",file): 
+      if re.search("\.pgm$", file) and not re.search(".*Ambient[.]pgm$",file):
+        y.append(imgClass) 
         xFilepath.append(imgClass + "/" + file)
         filename.append(file)
   return classes, filename, xFilepath, y
+
+
 
 
 
