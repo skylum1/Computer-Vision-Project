@@ -6,7 +6,7 @@
 '''
 
 import os
-
+import re
 '''
  Starting by a dataset name, this function return 
  classes => an array with all classes (subfolders inside dataset folder)
@@ -24,7 +24,7 @@ def getDataset(dataset):
     for dir in dirs:
       classes.append(dir)
 
-  classes.remove('.ipynb_checkpoints')
+#   classes.remove('.ipynb_checkpoints')
   for imgClass in classes:
     for file in os.listdir(directory + imgClass):
       if re.search("\.pgm$", file) and not re.search(".*Ambient[.]pgm$",file):
