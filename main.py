@@ -1,4 +1,3 @@
-
 import time
 import argparse
 import cv2
@@ -63,10 +62,16 @@ def main():
 	for xfp in xFilepaths:
     #changes
 		# img = imgRead(datasetFolder + xfp)
+    #with illumination
 		bh=cv2.imread(datasetFolder + xfp)
 		img = illum(bh)
-
-		print(type(img))
+		#with illumination and sharpenning
+		# bh=cv2.imread(datasetFolder + xfp)
+		# img = illum_sharp(bh)
+		
+    
+		img = sharpen(img)
+		# print(type(img))
 		#imgShow(numpy.matrix(img))
 
 		# Check if img exist (security check)
@@ -81,10 +86,10 @@ def main():
 			# shaped = blockshaped(lbp_value, 16, 14)
 
 			# Split img into 6*6 blocks (image size: 168 * 192)
-			shaped = blockshaped(lbp_value, 32, 28)
+			# shaped = blockshaped(lbp_value, 32, 28)
 
 			# Split img into 3*3 blocks (image size: 168 * 192)
-			# shaped = blockshaped(lbp_value, 64, 56)
+			shaped = blockshaped(lbp_value, 64, 56)
 
 			# Calculate the histogram for each block
 			xBlocks = []
