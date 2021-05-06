@@ -1,14 +1,8 @@
-'''
-@author Andrea Corriga
-@contact me@andreacorriga.com
-@date 2018
-@version 1.0
-'''
+
 import time
 import argparse
 import cv2
 from PIL import Image
-
 # Import my alghorithms
 from algorithms.LBP import LBP
 # Import my utils method
@@ -67,8 +61,12 @@ def main():
 
 
 	for xfp in xFilepaths:
-		img = imgRead(datasetFolder + xfp)
+    #changes
+		# img = imgRead(datasetFolder + xfp)
+		bh=cv2.imread(datasetFolder + xfp)
+		img = illum(bh)
 
+		print(type(img))
 		#imgShow(numpy.matrix(img))
 
 		# Check if img exist (security check)
@@ -78,15 +76,15 @@ def main():
 				img =  histogramEqualization(img) 
 
 			lbp_value = local_binary_pattern(img, 8, 1)
-
+			# print(lbp_value.shape)
 			# Split img into 12*12 blocks (image size: 168 * 192)
-			shaped = blockshaped(lbp_value, 16, 14)
+			# shaped = blockshaped(lbp_value, 16, 14)
 
 			# Split img into 6*6 blocks (image size: 168 * 192)
-			#shaped = blockshaped(lbp_value, 32, 28)
+			shaped = blockshaped(lbp_value, 32, 28)
 
 			# Split img into 3*3 blocks (image size: 168 * 192)
-			#shaped = blockshaped(lbp_value, 64, 56)
+			# shaped = blockshaped(lbp_value, 64, 56)
 
 			# Calculate the histogram for each block
 			xBlocks = []
